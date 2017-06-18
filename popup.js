@@ -5,7 +5,7 @@ class Popup{
 		this.content = content;
 		this.event = new PopupEvent("popup-event");
 
-		let options = options || {};
+		options = options || {};
 		this.options = {};
 		this.options.title = options.title || "";
 		this.options.callbackOpen = options.callbackOpen || null;
