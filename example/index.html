@@ -49,7 +49,7 @@
 		}
 
 		function displayAlert(){
-			Popup.alert("Hey!", {title:"Info"});
+			Popup.alert("Hey!", {title:"Info", animationOpen: "fadeInDown", animationClose: "fadeOutUp"});
 		}
 
 		function displayConfirm(){
@@ -57,7 +57,7 @@
 		}
 
 		function displayPrompt(){
-			Popup.prompt("What is on your mind?", {title:"Question", callbackClose:function(popupEvent){console.log(popupEvent.value);}});
+			Popup.prompt("What is on your mind?", {title:"Question", animationOpen: "flipInX", animationClose: "flipOutX", callbackClose:function(popupEvent){console.log(popupEvent.value);}});
 		}
 
 
