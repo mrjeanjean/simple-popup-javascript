@@ -4,7 +4,7 @@ class Popup{
 	constructor(content, options){
 		this.content = content;
 		this.event = new PopupEvent("popup-event");
-		var options = options || {};
+		let options = options || {};
 		this.options = {};
 		this.options.title = options.title || "";
 		this.options.callbackOpen = options.callbackOpen || null;
@@ -26,7 +26,7 @@ class Popup{
 	}
 
 	draw(){
-		var popup = $("<div>").html(this.getTemplate());
+		let popup = $("<div>").html(this.getTemplate());
 
 		popup.find(".popup-header").html(this.options.title);
 		popup.find(".popup-content").html(this.content);
@@ -66,7 +66,7 @@ class Popup{
 	}
 
 	playAnimation(animationName, callback){
-        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        let animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
         this.$popup.find(".popup-inner").addClass('animated ' + animationName).one(animationEnd, function(){
             $(this).removeClass('animated ' + animationName);
             if(typeof callback == "function"){
@@ -78,17 +78,17 @@ class Popup{
 	getTemplate(){}
 
 	static alert(content, options){
-		var alert = new Alert(content, options);
+		let alert = new Alert(content, options);
 		alert.show();
 	}
 
 	static confirm(content, options){
-		var confirm = new Confirm(content, options);
+		let confirm = new Confirm(content, options);
 		confirm.show();
 	}
 
 	static prompt(content, options){
-		var prompt = new Prompt(content, options);
+		let prompt = new Prompt(content, options);
 		prompt.show();
 	}
 }
@@ -149,7 +149,7 @@ class Confirm extends Popup{
 
 
 class Prompt extends Popup{
-	
+
 	constructor(content, options){
 		super(content, options);
 		this.event.name = "event-prompt";
@@ -182,8 +182,3 @@ class PopupEvent{
 		this.name = name;
 	}
 }
-
-
-$.fn.extend({
-    
-});
