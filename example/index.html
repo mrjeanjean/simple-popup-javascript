@@ -6,11 +6,68 @@
 	<link rel="stylesheet" href="../lib/animate.css">
 	<link href="https://fonts.googleapis.com/css?family=Overpass" rel="stylesheet">
 	<link rel="stylesheet" href="../css/popup.css">
+
+	<style>
+		body{
+			font-family: "Overpass";
+		}
+		h1{
+			text-align: center;
+			margin-bottom: 2em;
+		}
+		.btn-popup{
+			width: 250px;
+			margin: 20px auto;
+			display: block;
+			padding: 25px 50px;
+			font-family: "Overpass";
+		}
+	</style>
 </head>
 <body>
-	<button class="show-popup">Open</button>
+	<h1>Simple popup demo</h1>
+
+	<button class="btn-popup show-alert">Open alert</button>
+	<button class="btn-popup show-confirm">Open confirm</button>
+	<button class="btn-popup show-prompt">Open prompt</button>
+
 	<script src="../lib/jquery.min.js"></script>
 	<script src="../popup.js"></script>
-	<script src="scripts.js"></script>
+	<script>
+		function afterPrompt(event){
+			Popup.alert("Please to meet you, " + event.value + "!", {title:"Info"});
+		}
+
+		function displayConfirm(){
+			Popup.confirm("Are-you sure?", {title:"Confirmation", animationOpen: "zoomIn", animationClose: "fadeOutUp", callbackClose:function(event){
+				if(event.confirm){
+					Popup.alert("All right", {title:"Info"});
+				}else{
+					Popup.alert("Nevermind...", {title:"Info"});
+				}
+			}});
+		}
+
+		function displayAlert(){
+			Popup.alert("Hey !", {title:"Info"});
+		}
+
+		function displayConfirm(){
+			Popup.confirm("Is that true? ", {title:"Confirm", callbackClose:function(popupEvent){console.log(popupEvent.confirm);}});
+		}
+
+		function displayPrompt(){
+			Popup.prompt("What is on your mind?", {title:"Question", callbackClose:function(popupEvent){console.log(popupEvent.value);}});
+		}
+
+
+		$(function(){
+			Popup.prompt("Tell me your name:", {title:"Welcome", animationOpen: "zoomIn", animationClose: "zoomOut", callbackClose:afterPrompt});
+
+			$("button.show-alert").on("click", displayAlert);
+			$("button.show-prompt").on("click", displayPrompt);
+			$("button.show-confirm").on("click", displayConfirm);
+		});
+	</script>
 </body>
 </html>
