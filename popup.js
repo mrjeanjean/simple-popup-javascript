@@ -73,7 +73,7 @@ class Popup{
 
 		this.$popup.find(".popup-inner").addClass('animated ' + animationName).one(animationEnd, function(){
 			$(this).removeClass('animated ' + animationName);
-			if(typeof callback == "function"){
+			if(typeof callback === "function"){
 				callback();
 			}
 		});

@@ -8,4 +8,9 @@ Just a simple ECMA6 popup class.
 * Prompt
 * Confirm
 
-Need to be babelify to be used in production.
+### Dependencies ###
+
+* [jQuery v3.2.1](https://code.jquery.com/jquery-3.2.1.min.js)
+* [Animate](https://daneden.github.io/animate.css/)
+
+Need to be "[Babelify](https://babeljs.io/)" to be used in production.
