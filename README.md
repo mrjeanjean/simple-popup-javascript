@@ -1,4 +1,4 @@
-# Popup jQuery #
+# Simple Popup #
 
 Just a simple ECMA6 popup class.
 
