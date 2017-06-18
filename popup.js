@@ -4,6 +4,7 @@ class Popup{
 	constructor(content, options){
 		this.content = content;
 		this.event = new PopupEvent("popup-event");
+
 		let options = options || {};
 		this.options = {};
 		this.options.title = options.title || "";
@@ -48,6 +49,7 @@ class Popup{
 		if(event.keyCode == 13){
 			this.$popup.find("button").trigger("click");
 		}
+
 		if(event.keyCode == 27){
 			this.remove();
 		}
@@ -60,6 +62,7 @@ class Popup{
 	remove(){
 		this.removeEvents();
 		this.$popup.remove();
+
 		if(typeof this.options.callbackClose === "function"){
 			this.options.callbackClose(this.event);
 		}
@@ -67,6 +70,7 @@ class Popup{
 
 	playAnimation(animationName, callback){
         let animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+
         this.$popup.find(".popup-inner").addClass('animated ' + animationName).one(animationEnd, function(){
             $(this).removeClass('animated ' + animationName);
             if(typeof callback == "function"){
@@ -99,6 +103,7 @@ class Alert extends Popup{
 		super(content, options);
 		this.event.name = "event-alert";
 	}
+
 	getTemplate(){
 		return "<div class='popup-bg popup-alert'>" +
 					"<div class='popup'>" +
@@ -178,6 +183,7 @@ class Prompt extends Popup{
 }
 
 class PopupEvent{
+	
 	constructor(name){
 		this.name = name;
 	}
