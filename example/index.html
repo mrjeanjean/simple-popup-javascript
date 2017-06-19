@@ -34,6 +34,11 @@
 	<script src="../lib/jquery.min.js"></script>
 	<script src="../popup.js"></script>
 	<script>
+		Popup.init({
+			closeLabel: "please close",
+			yesLabel: "yup"
+		});
+
 		function afterPrompt(event){
 			Popup.alert("Please to meet you, " + event.value + "!", {title:"Info"});
 		}
@@ -49,7 +54,7 @@
 		}
 
 		function displayAlert(){
-			Popup.alert("Hey!", {title:"Info", animationOpen: "fadeInDown", animationClose: "fadeOutUp"});
+			Popup.alert("Hey!", {title:"Info", animationOpen: "shake", animationClose: "fadeOutUp"});
 		}
 
 		function displayConfirm(){
@@ -59,7 +64,6 @@
 		function displayPrompt(){
 			Popup.prompt("What is on your mind?", {title:"Question", animationOpen: "flipInX", animationClose: "flipOutX", callbackClose:function(popupEvent){console.log(popupEvent.value);}});
 		}
-
 
 		$(function(){
 			Popup.prompt("Tell me your name:", {title:"Welcome", animationOpen: "zoomIn", animationClose: "zoomOut", callbackClose:afterPrompt});

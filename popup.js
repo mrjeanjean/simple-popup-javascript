@@ -1,4 +1,5 @@
 'use strict';
+let settings = {};
 class Popup{
 
 	constructor(content, options){
@@ -12,12 +13,13 @@ class Popup{
 		this.options.callbackClose = options.callbackClose || null;
 		this.options.animationOpen = options.animationOpen || "fadeIn";
 		this.options.animationClose = options.animationClose || "fadeOut";
-
-		this.$popup = this.draw();
-		this.initEvents();
+		this.options.closeLabel = options.closeLabel || settings.closeLabel || "close";
 	}
 
 	show(){
+        this.$popup = this.draw();
+        this.initEvents();
+
 		$("body").append(this.$popup);
 		this.playAnimation(this.options.animationOpen);
 
@@ -95,6 +97,17 @@ class Popup{
 		let prompt = new Prompt(content, options);
 		prompt.show();
 	}
+
+    static settings(){
+        return settings;
+    }
+
+    static init(params){
+        params = params || {};
+        settings.closeLabel = params.closeLabel || null;
+        settings.yesLabel = params.yesLabel || null;
+        settings.noLabel = params.noLabel || null;
+    }
 }
 
 class Alert extends Popup{
@@ -110,7 +123,7 @@ class Alert extends Popup{
 						"<div class='popup-inner'>" +
 							"<div class='popup-header'></div>" +
 							"<div class='popup-content'></div>" +
-							"<div class='popup-footer'><button>close</button></div>" +
+							"<div class='popup-footer'><button>" + this.options.closeLabel + "</button></div>" +
 						"</div>" +
 					"</div>" +
 				"</div>";
@@ -121,6 +134,11 @@ class Confirm extends Popup{
 
 	constructor(content, options){
 		super(content, options);
+
+        options = options || {};
+        this.options.yesLabel = options.yesLabel || settings.yesLabel || "yes";
+        this.options.noLabel = options.noLabel || settings.noLabel || "no";
+
 		this.event.name = "event-confirm";
 		this.event.confirm = false;
 	}
@@ -145,7 +163,7 @@ class Confirm extends Popup{
 						"<div class='popup-inner'>" +
 							"<div class='popup-header'></div>" +
 							"<div class='popup-content'></div>" +
-							"<div class='popup-footer'><button class='true'>yes</button><button class='false'>no</button></div>" +
+							"<div class='popup-footer'><button class='true'>" + this.options.yesLabel + "</button><button class='false'>" + this.options.noLabel + "</button></div>" +
 						"</div>" +
 					"</div>" +
 				"</div>";
@@ -157,6 +175,12 @@ class Prompt extends Popup{
 
 	constructor(content, options){
 		super(content, options);
+
+        options = options || {};
+        this.options.validLabel = options.validLabel || settings.validLabel || "valid";
+
+        console.log(this.options)
+
 		this.event.name = "event-prompt";
 		this.event.value = "";
 	}
@@ -175,7 +199,7 @@ class Prompt extends Popup{
 							"<div class='popup-input'>" +
 								"<input value='' type='text' autofocus>" +
 							"</div>" +
-							"<div class='popup-footer'><button>ok</button></div>" +
+							"<div class='popup-footer'><button>" + this.options.validLabel + "</button></div>" +
 						"</div>" +
 					"</div>" +
 				"</div>";
