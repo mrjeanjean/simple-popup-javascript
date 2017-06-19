@@ -1,4 +1,5 @@
 'use strict';
+//TODO: using Popup namespace
 let settings = {};
 class Popup{
 
