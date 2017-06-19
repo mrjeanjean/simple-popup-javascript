@@ -104,10 +104,7 @@ class Popup{
     }
 
     static init(params){
-        params = params || {};
-        settings.closeLabel = params.closeLabel || null;
-        settings.yesLabel = params.yesLabel || null;
-        settings.noLabel = params.noLabel || null;
+        settings = params || {};
     }
 }
 
@@ -136,7 +133,6 @@ class Confirm extends Popup{
 	constructor(content, options){
 		super(content, options);
 
-        options = options || {};
         this.options.yesLabel = options.yesLabel || settings.yesLabel || "yes";
         this.options.noLabel = options.noLabel || settings.noLabel || "no";
 
@@ -177,10 +173,7 @@ class Prompt extends Popup{
 	constructor(content, options){
 		super(content, options);
 
-        options = options || {};
         this.options.validLabel = options.validLabel || settings.validLabel || "valid";
-
-        console.log(this.options)
 
 		this.event.name = "event-prompt";
 		this.event.value = "";
