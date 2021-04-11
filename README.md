@@ -16,27 +16,23 @@ First, add jQuery link before your closing <body> tag add:
 <script src="../lib/jquery.min.js"></script>
 ```
 Then, add popup.js script
-```
-#!html
+```html
 <script src="../popup.js"></script>
 ```
 
 
 ### Alert type:
-```
-#!javascript
+```javascript
 Popup.alert("Oh alert!");
 ```
 
 ### Confirm type:
-```
-#!javascript
+```javascript
 Popup.confirm("Are you sure?");
 ```
 
 ### Prompt type:
-```
-#!javascript
+```javascript
 Popup.prompt("What's your name?");
 ```
 
@@ -45,8 +41,7 @@ Popup.prompt("What's your name?");
 ## Settings
 You can change default settings globally with static Popup ```init``` method:
 
-```
-#!javascript
+```javascript
 // Change default label on popup button example:
 Popup.init({
     closeLabel: "got it!",
@@ -54,8 +49,7 @@ Popup.init({
 });
 ```
 or just use settings object when you call ```alert```, ```confirm``` or ```prompt``` method, like this:
-```
-#!javascript
+```javascript
 // Add popup title example
 Popup.alert("Alert with params", {title:"Info"});
 ```
