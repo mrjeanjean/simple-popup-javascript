@@ -11,7 +11,7 @@ Just a simple ECMA6 popup class.
 ## Usage
 First, add jQuery link before your closing <body> tag add:
 
-```
+```html
 <script src="../lib/jquery.min.js"></script>
 ```
 Then, add popup.js script
